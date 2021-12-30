@@ -59,7 +59,10 @@ class AccountMoveLotValues(models.Model):
 
         incoming_sml = stock_move_lines.filtered(_filter_incoming_sml)
         outgoing_sml = stock_move_lines.filtered(_filter_outgoing_sml)
-
+        _logger.info("**** IN SML ****")
+        _logger.info(incoming_sml)
+        _logger.info("**** OUT SML ****")
+        _logger.info(outgoing_sml)
         # Prepare and return lot_values
         qties_per_lot = defaultdict(lambda: 0)
         if self.move_type == 'out_refund':
