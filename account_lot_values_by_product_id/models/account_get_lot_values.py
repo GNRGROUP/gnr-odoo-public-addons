@@ -67,6 +67,7 @@ class AccountMoveLotValues(models.Model):
                 if last_invoice_datetime:
                     return last_invoice_datetime <= ml.date <= self_datetime
                 else:
+                    _logger.info("ML date is {} self_datetime is {}".format(ml.date, self_datetime))
                     return ml.date <= self_datetime
             return False
         _logger.info("**** Before ****")
