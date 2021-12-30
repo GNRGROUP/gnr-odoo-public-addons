@@ -42,6 +42,13 @@ class AccountMoveLotValues(models.Model):
         last_invoice_datetime = max(last_write_dates) if last_write_dates else None
 
         def _filter_incoming_sml(ml):
+            _logger.info(ml.state)
+            _logger.info(ml.location_id.usage)
+            _logger.info(ml.lot_id)
+            _logger.info(last_invoice_datetime)
+            _logger.info(ml.date)
+            _logger.info(self_datetime)
+
             if ml.state == 'done' and ml.location_id.usage == 'customer' and ml.lot_id:
                 if last_invoice_datetime:
                     return last_invoice_datetime <= ml.date <= self_datetime
@@ -50,6 +57,12 @@ class AccountMoveLotValues(models.Model):
             return False
 
         def _filter_outgoing_sml(ml):
+            _logger.info(ml.state)
+            _logger.info(ml.location_dest_id.usage)
+            _logger.info(ml.lot_id)
+            _logger.info(last_invoice_datetime)
+            _logger.info(ml.date)
+            _logger.info(self_datetime)
             if ml.state == 'done' and ml.location_dest_id.usage == 'customer' and ml.lot_id:
                 if last_invoice_datetime:
                     return last_invoice_datetime <= ml.date <= self_datetime
