@@ -56,7 +56,8 @@ class AccountMoveLotValues(models.Model):
                 else:
                     return ml.date <= self_datetime
             return False
-
+        _logger.info("**** Before ****")
+        _logger.info(stock_move_lines)
         incoming_sml = stock_move_lines.filtered(_filter_incoming_sml)
         outgoing_sml = stock_move_lines.filtered(_filter_outgoing_sml)
         _logger.info("**** IN SML ****")
